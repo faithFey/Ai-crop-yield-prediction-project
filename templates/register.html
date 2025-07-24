@@ -1,0 +1,50 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - CropYield360</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Maize_icon.svg/64px-Maize_icon.svg.png" alt="Logo">
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h2>Create Your Account</h2>
+        <p>Join CropYield360 to start predicting maize yields.</p>
+    </section>
+
+    <section class="contact-section">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div style="color: red; margin-bottom: 1rem;">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="/register">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="role" required>
+                <option value="">Select Your Role</option>
+                <option value="farmer">Farmer</option>
+                <option value="officer">Agricultural Officer</option>
+                <option value="admin">Admin</option>
+            </select>
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <div class="footer">
+        &copy; 2025 CropYield360 | Precision Agriculture for Kenya
+    </div>
+</body>
+</html>

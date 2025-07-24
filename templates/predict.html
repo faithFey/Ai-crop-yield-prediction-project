@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict Maize Yield – CropYield360</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/1/12/Maize_icon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/predict.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+        <strong>CropYield360</strong>
+        <div>
+            <a href="/">Home</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Enter Your Farm Details</h2>
+        <form action="/predict" method="post">
+            <input type="number" name="rainfall" placeholder="Rainfall (mm)" required>
+            <input type="number" name="temperature" placeholder="Average Temperature (°C)" required>
+            <input type="number" name="ndvi" placeholder="NDVI Value" required>
+
+            <select name="soil_type" required>
+                <option value="">Select Soil Type</option>
+                <option value="1">Clay</option>
+                <option value="2">Loamy</option>
+                <option value="3">Sandy</option>
+            </select>
+
+            <button type="submit">Predict Yield</button>
+        </form>
+
+        <a class="back-link" href="/">← Back to Home</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropYield360 - Smart Agriculture for Trans Nzoia</title>
+    <meta name="description" content="AI-powered maize yield prediction for Trans Nzoia using smart, data-driven tools.">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/1/12/Maize_icon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script>
+        function showConfirmation(event) {
+            event.preventDefault();
+            alert("Thank you! Your message has been sent successfully.");
+            event.target.submit();
+        }
+        window.onload = () => {
+            document.body.style.opacity = 0;
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = 1;
+            }, 100);
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Maize_icon.svg/64px-Maize_icon.svg.png" alt="CropYield360 Logo">
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="/predict">Predict</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <header>
+        <h1>CropYield360</h1>
+        <p>Empowering Agriculture with AI Insights in Trans Nzoia</p>
+    </header>
+
+    <section class="hero">
+        <h2>Predict Crop Yields. Empower Farmers. Drive Food Security.</h2>
+        <p>CropYield360 uses real-time environmental data and machine learning to predict maize yields with precision and accessibility for farmers, agronomists, and policymakers in Trans Nzoia.</p>
+        <a href="/predict" class="cta-button">Start Prediction</a>
+        <!-- The backend will redirect to login if user not authenticated -->
+    </section>
+
+    <section class="features" id="features">
+        <div class="feature-card">
+            <h3>Smart Forecasts</h3>
+            <p>Accurate yield predictions using NDVI, rainfall, temperature, and more.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Farmer-Friendly</h3>
+            <p>Simple input forms with optional advanced settings for researchers.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Localized Insights</h3>
+            <p>Built specifically for the agro-ecological zones of Trans Nzoia County.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Data-Driven Decisions</h3>
+            <p>Help cooperatives, extension officers, and governments plan better.</p>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Farmers Say</h2>
+        <blockquote>“CropYield360 helped me prepare better for the season.” – Rose, Kitale</blockquote>
+        <blockquote>“With the forecast, we knew when to plant. Very helpful.” – Joseph, Cherangany</blockquote>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>Contact Us</h2>
+        <form action="/send-message" method="POST" onsubmit="showConfirmation(event)">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="social-icons">
+            <a href="https://wa.me/254712345678" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://facebook.com/yourpage" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+    </section>
+
+    <div class="footer">
+        &copy; 2025 CropYield360 | Built for Sustainable Agriculture in Kenya
+        <br>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Help</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmer Prediction - CropYield360</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Maize_icon.svg/64px-Maize_icon.svg.png" alt="CropYield360 Logo">
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h2>Simple Yield Prediction Form</h2>
+        <p>Enter basic information about your farm to get a yield estimate.</p>
+    </section>
+
+    <section class="contact-section">
+        <form action="/predict-result" method="POST">
+            <label for="rainfall">Rainfall (mm):</label>
+            <input type="number" name="rainfall" step="0.1" placeholder="e.g. 500" required>
+
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" name="temperature" step="0.1" placeholder="e.g. 22.5" required>
+
+            <label for="soil">Soil Type:</label>
+            <select name="soil" required>
+                <option value="">Select soil type</option>
+                <option value="sandy">Sandy</option>
+                <option value="loamy">Loamy</option>
+                <option value="clay">Clay</option>
+                <option value="silty">Silty</option>
+                <option value="peaty">Peaty</option>
+                <option value="saline">Saline</option>
+            </select>
+
+            <button type="submit">Predict Yield</button>
+        </form>
+    </section>
+
+    <div class="footer">
+        &copy; 2025 CropYield360 | Empowering Farmers in Trans Nzoia
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!-- templates/predict_officer.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Officer Prediction - CropYield360</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Maize_icon.svg/64px-Maize_icon.svg.png" alt="Logo">
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h2>Officer Yield Prediction</h2>
+        <p>Enter detailed environmental data to estimate yield accurately.</p>
+    </section>
+
+    <section class="contact-section">
+        <form action="/predict-result" method="POST">
+            <input type="number" step="0.01" name="rainfall" placeholder="Rainfall (mm)" required>
+            <input type="number" step="0.01" name="temperature" placeholder="Temperature (°C)" required>
+            <input type="number" step="0.01" name="humidity" placeholder="Humidity (%)" required>
+            <input type="number" step="0.01" name="ndvi" placeholder="NDVI value" required>
+            <button type="submit">Predict Yield</button>
+        </form>
+    </section>
+
+    <div class="footer">
+        &copy; 2025 CropYield360 | Trans Nzoia Agriculture
+    </div>
+</body>
+</html>

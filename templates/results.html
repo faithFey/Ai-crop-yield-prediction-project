@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prediction Results - CropYield360</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f0fdf4;
+      color: #333;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #2e7d32;
+    }
+    .chart-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .prediction-box {
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Prediction Result</h1>
+  <div class="prediction-box">
+    🌽 <strong>Predicted Maize Yield:</strong> {{ prediction }} tons/hectare
+  </div>
+
+  <div class="chart-container">
+    <h2>1. Rainfall vs Yield</h2>
+    <canvas id="rainfallYieldChart"
+      data-labels='{{ rainfall_labels | tojson | safe }}'
+      data-values='{{ rainfall_yield_values | tojson | safe }}'></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h2>2. Monthly Yield Distribution</h2>
+    <canvas id="monthlyYieldChart"
+      data-labels='{{ month_labels | tojson | safe }}'
+      data-values='{{ monthly_yield | tojson | safe }}'></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h2>3. Seasonal NDVI Variation</h2>
+    <canvas id="ndviChart"
+      data-labels='{{ month_labels | tojson | safe }}'
+      data-values='{{ monthly_ndvi | tojson | safe }}'></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h2>4. Temperature vs Yield</h2>
+    <canvas id="tempYieldChart"
+      data-labels='{{ month_labels | tojson | safe }}'
+      data-temp='{{ monthly_temp | tojson | safe }}'
+      data-yield='{{ monthly_yield | tojson | safe }}'></canvas>
+  </div>
+
+  <script>
+    function getChartData(id) {
+      const el = document.getElementById(id);
+      return {
+        labels: JSON.parse(el.dataset.labels || '[]'),
+        values: JSON.parse(el.dataset.values || '[]'),
+        temp: JSON.parse(el.dataset.temp || '[]'),
+        yield: JSON.parse(el.dataset.yield || '[]')
+      };
+    }
+
+    // Chart 1: Rainfall vs Yield
+    const rainData = getChartData('rainfallYieldChart');
+    new Chart('rainfallYieldChart', {
+      type: 'bar',
+      data: {
+        labels: rainData.labels,
+        datasets: [{
+          label: 'Yield (tons/ha)',
+          data: rainData.values,
+          backgroundColor: '#66bb6a'
+        }]
+      }
+    });
+
+    // Chart 2: Monthly Yield
+    const monthData = getChartData('monthlyYieldChart');
+    new Chart('monthlyYieldChart', {
+      type: 'line',
+      data: {
+        labels: monthData.labels,
+        datasets: [{
+          label: 'Yield',
+          data: monthData.values,
+          borderColor: '#2e7d32',
+          fill: false,
+          tension: 0.4
+        }]
+      }
+    });
+
+    // Chart 3: NDVI
+    const ndviData = getChartData('ndviChart');
+    new Chart('ndviChart', {
+      type: 'line',
+      data: {
+        labels: ndviData.labels,
+        datasets: [{
+          label: 'NDVI',
+          data: ndviData.values,
+          borderColor: '#ffa726',
+          fill: false,
+          tension: 0.4
+        }]
+      }
+    });
+
+    // Chart 4: Temp vs Yield
+    const tempYieldData = getChartData('tempYieldChart');
+    new Chart('tempYieldChart', {
+      type: 'line',
+      data: {
+        labels: tempYieldData.labels,
+        datasets: [
+          {
+            label: 'Yield',
+            data: tempYieldData.yield,
+            borderColor: '#2e7d32',
+            yAxisID: 'y'
+          },
+          {
+            label: 'Temperature (°C)',
+            data: tempYieldData.temp,
+            borderColor: '#29b6f6',
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            type: 'linear',
+            position: 'left'
+          },
+          y1: {
+            type: 'linear',
+            position: 'right',
+            grid: { drawOnChartArea: false }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

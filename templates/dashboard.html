@@ -1,0 +1,34 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - CropYield360</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Maize_icon.svg/64px-Maize_icon.svg.png" alt="Logo">
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h2>Welcome, {{ current_user.username }}</h2>
+        <p>Your role: <strong>{{ current_user.role }}</strong></p>
+        {% if current_user.role == 'farmer' %}
+            <a href="{{ url_for('predict') }}" class="cta-button">Start Prediction as Farmer</a>
+        {% elif current_user.role == 'officer' %}
+            <a href="{{ url_for('predict') }}" class="cta-button">Start Prediction as Officer</a>
+        {% elif current_user.role == 'admin' %}
+            <a href="{{ url_for('predict') }}" class="cta-button">Start Prediction as Admin</a>
+        {% endif %}
+    </section>
+
+    <div class="footer">
+        &copy; 2025 CropYield360 | Empowering Smart Agriculture
+    </div>
+</body>
+</html>
