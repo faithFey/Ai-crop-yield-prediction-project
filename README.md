@@ -114,7 +114,27 @@ Use the contact form on the landing page or email `faithnasimiyuu@gmail.com`.
 * Use HTTPS, input validation, rate limiting, and secure DB in production.
 
 ---
+## 🚀 Live Deployment
 
+This project is successfully deployed and hosted on **Render**, making it accessible to users worldwide.
+
+### 🔗 Live Web App  
+[👉 Visit CropYield360 on Render](https://cropyield360.onrender.com)  
+
+### 💡 Features Available Online
+- 🌾 **Role-Based Login System** for Farmers, Officers, and Admins
+- 📈 **AI-Powered Maize Yield Prediction**
+- 📊 **Interactive Charts for Rainfall, NDVI, and Yield Trends**
+- 📬 **Contact Form** for users and visitors
+- 📄 **Secure Authentication & Dynamic Dashboards**
+
+### 🛠️ Hosted On:
+- **Platform:** [Render](https://render.com)  
+- **Backend:** Flask + SQLite  
+- **Frontend:** HTML, CSS, Chart.js  
+- **Model:** Trained using Scikit-learn (RandomForestRegressor)
+
+---
 ## 📌 License
 
 This project is open-source and licensed under MIT.
